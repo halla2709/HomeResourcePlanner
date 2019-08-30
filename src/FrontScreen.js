@@ -12,7 +12,7 @@ export default class FrontScreen extends React.Component {
             <View style={Styles.container}>
             <View style={Styles.buttonContainer}>
                 <View style={Styles.buttonColumn}>
-                    <TouchableHighlight style={[Styles.button, { flex: 0.45, backgroundColor: 'deeppink' }]} onPress={() => {
+                    <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.45, backgroundColor: 'deeppink' }]} onPress={() => {
                         console.log("Add ingredients")
                         this.props.navigation.navigate('ReadReceipt');
                     }}>
@@ -21,7 +21,7 @@ export default class FrontScreen extends React.Component {
                             <Text style={Styles.buttonText}>Add new items</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={[Styles.button, { flex: 0.55, backgroundColor: 'darkviolet' }]} onPress={() => {
+                    <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.55, backgroundColor: 'darkviolet' }]} onPress={() => {
                         console.log("Find recipe");
                         this.props.navigation.navigate('Recipes');
                     }}>
@@ -32,7 +32,7 @@ export default class FrontScreen extends React.Component {
                     </TouchableHighlight>
                 </View>
                 <View style={Styles.buttonColumn}>
-                    <TouchableHighlight style={[Styles.button, { flex: 0.55, backgroundColor: 'dodgerblue' }]} onPress={() => {
+                    <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.55, backgroundColor: 'dodgerblue' }]} onPress={() => {
                         console.log("Get ingredient list");
                         this.props.navigation.navigate('Data');
                     }}>
@@ -41,7 +41,7 @@ export default class FrontScreen extends React.Component {
                             <Text style={Styles.buttonText}>Look at inventory</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={[Styles.button, { flex: 0.45, backgroundColor: 'coral' }]} onPress={() => {
+                    <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.45, backgroundColor: 'coral' }]} onPress={() => {
                         console.log("User")
                     }}>
                         <View style={Styles.buttonContent}>

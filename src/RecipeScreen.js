@@ -4,7 +4,7 @@ import Styles from '../assets/Stylesheet'
 import RecipeComponent from './RecipeComponent'
 import DatabaseManager from './DatabaseManager'
 import RecipeGetter from './RecipeGetter'
-export default class RecipeScreen extends React.Component {
+export default class RecipeScreen extends React.Component {    
     constructor() {
         super();
         this.state = {recipes: []};
@@ -18,11 +18,9 @@ export default class RecipeScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView style={Styles.container}>
-                <FlatList data={this.state.recipes} 
+                <FlatList style={{backgroundColor:"#EEE7E9"}} data={this.state.recipes} 
                     renderItem={({item})=><RecipeComponent key={item.recipe.label} recipe={item.recipe}/>
-                }/>
-            </ScrollView>            
+                }/>     
         )
     }
 }

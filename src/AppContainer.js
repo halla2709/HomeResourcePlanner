@@ -10,7 +10,7 @@ const AppNavigator = createStackNavigator({
   Home: FrontScreen,
   Recipes: RecipeScreen,
   Data: DataScreen,
-    ReadReceipt: ReadReceipt
+  ReadReceipt: ReadReceipt
 },{
     initialRouteName:"Home"
 });

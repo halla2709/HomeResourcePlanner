@@ -17,7 +17,9 @@ export default StyleSheet.create({
           alignItems: 'stretch'
       },
       card: {
-          height:300
+          borderColor:'#A18C92',
+          borderWidth:2,
+          marginVertical:2
       },
       buttonColumn: {
           flex: 1,

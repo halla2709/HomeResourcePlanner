@@ -6,7 +6,6 @@ import DatabaseManager from './DatabaseManager'
 import { AntDesign } from '@expo/vector-icons'
 
 export default class DataScreen extends React.Component {
-  //  this.dBInstance;    
     constructor() {
         super();
         this.state = { ingredients: [], modalVisible: false }
@@ -14,12 +13,19 @@ export default class DataScreen extends React.Component {
     }
 
     async componentDidMount() {
+        this.loadIngredients();
+    }
+
+    async loadIngredients() {
         var allIngredients = await this.dBInstance.getAllIngredientsForUser();
         console.log(allIngredients);
         this.setState({ ingredients: allIngredients });
-        //this.setState({ ingredients: [{name:"bla", amount:4, expirationDate:new Date()}, {name:"blabla", amount:45.1, expirationDate:new Date()}, {name:"bluúúð", amount:712, expirationDate:new Date()}]});
     }
 
+    async deleteIngredient(name) {
+        this.dBInstance.deleteUsedIngredients([name]);
+        this.loadIngredients();
+    }
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -35,9 +41,13 @@ export default class DataScreen extends React.Component {
                                 'Throw away item',
                                 'Why are you deleting this?',
                                 [
-                                    { text: 'I threw it away', onPress: () => this.refs.modal.open() },
-                                    { text: 'I used it',  onPress: () => console.log('Cancel Pressed') },
-                                    { text: 'Other', onPress: () => console.log('OK Pressed') },
+                                    { text: 'I threw it away', onPress: () => {
+                                        this.deleteIngredient(item.name);
+                                        this.refs.modal.open();
+                                     }
+                                    },
+                                    { text: 'I used it',  onPress: () => this.deleteIngredient(item.name) },
+                                    { text: 'Other', onPress: () => this.deleteIngredient(item.name) },
                                 ],
                                 { cancelable: false },
                             );

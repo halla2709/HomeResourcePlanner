@@ -33,8 +33,8 @@ class DatabaseManager{
         return this;
     }
 
-   async getAllIngredientsForUser (name) {
-       var snapshots = await  db.collection("Anton").get();
+   async getAllIngredientsForUser(name) {
+       var snapshots = await db.collection("Anton").get();
        var ingredients = [];
        snapshots.forEach((doc) => {
            console.log(doc.data());
@@ -42,6 +42,13 @@ class DatabaseManager{
            ingredients.push({name:doc.id, amount:doc.data().amount, expirationDate:expirationDate});
        });
        return ingredients;
+   }
+
+   async deleteUsedIngredients(ingredients, name) {
+       console.log(ingredients);
+       ingredients.forEach((ing) => {
+            db.collection("Anton").doc(ing).delete();
+       });
    }
 }
 
