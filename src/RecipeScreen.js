@@ -16,7 +16,7 @@ export default class RecipeScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView style={Styles.container}>
                 <FlatList data={this.state.recipes} 
                     renderItem={({item})=><RecipeComponent key={item.recipe.label} recipe={item.recipe}/>
                 }/>

@@ -27,8 +27,9 @@ var firebaseConfig = {
        var snapshots = await db.collection("Anton").get();
        var ingredients = [];
        snapshots.forEach((doc) => {
-           console.log(doc.id);
-            ingredients.push(doc.id);
+           console.log(doc.data());
+           var expirationDate = doc.data().expirationDate.toDate();
+           ingredients.push({name:doc.id, amount:doc.data().amount, expirationDate:expirationDate});
        });
        return ingredients;
    }

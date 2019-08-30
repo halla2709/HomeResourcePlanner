@@ -17,7 +17,7 @@ export default class FrontScreen extends React.Component {
                     }}>
                         <View style={Styles.buttonContent}>
                             <AntDesign style={Styles.buttonIcon} name="qrcode" />
-                            <Text style={Styles.buttonText}>Bæta við innkaupum</Text>
+                            <Text style={Styles.buttonText}>Add new items</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight style={[Styles.button, { flex: 0.55, backgroundColor: 'darkviolet' }]} onPress={() => {
@@ -26,7 +26,7 @@ export default class FrontScreen extends React.Component {
                     }}>
                         <View style={Styles.buttonContent}>
                             <MaterialCommunityIcons style={Styles.buttonIcon} name="food-apple-outline" />
-                            <Text style={Styles.buttonText}>Hvað á að elda?</Text>
+                            <Text style={Styles.buttonText}>Find recipes</Text>
                         </View>
                     </TouchableHighlight>
                 </View>
@@ -37,7 +37,7 @@ export default class FrontScreen extends React.Component {
                     }}>
                         <View style={Styles.buttonContent}>
                             <MaterialCommunityIcons style={Styles.buttonIcon} name="fridge-outline" />
-                            <Text style={Styles.buttonText}>Hvað er til?</Text>
+                            <Text style={Styles.buttonText}>Look at inventory</Text>
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight style={[Styles.button, { flex: 0.45, backgroundColor: 'coral' }]} onPress={() => {
@@ -45,7 +45,7 @@ export default class FrontScreen extends React.Component {
                     }}>
                         <View style={Styles.buttonContent}>
                             <MaterialCommunityIcons style={Styles.buttonIcon} name="settings-outline" />
-                            <Text style={Styles.buttonText}>Stillingar</Text>
+                            <Text style={Styles.buttonText}>Settings</Text>
                         </View>
                     </TouchableHighlight>
                 </View>

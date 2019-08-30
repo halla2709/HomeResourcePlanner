@@ -43,5 +43,24 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+      },
+      ingredientsContainer: {
+        flex: 1,
+        backgroundColor: '#EEE7E9',
+        alignItems: 'stretch'
+      },
+      ingredientItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: 'powderblue',
+        height: 70,
+        paddingHorizontal: 10,
+        borderColor: 'steelblue',
+        borderWidth: 1,
+        marginBottom:1
+      },
+      ingredientText: {
+          fontSize: 18
       }
 });
