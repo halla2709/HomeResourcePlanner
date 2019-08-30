@@ -14,6 +14,7 @@ export default class FrontScreen extends React.Component {
                 <View style={Styles.buttonColumn}>
                     <TouchableHighlight style={[Styles.button, { flex: 0.45, backgroundColor: 'deeppink' }]} onPress={() => {
                         console.log("Add ingredients")
+                        this.props.navigation.navigate('ReadReceipt');
                     }}>
                         <View style={Styles.buttonContent}>
                             <AntDesign style={Styles.buttonIcon} name="qrcode" />
