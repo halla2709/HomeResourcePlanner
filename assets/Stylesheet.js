@@ -2,20 +2,46 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#EEE7E9',
         alignItems: 'center',
         justifyContent: 'center',
       },
       buttonContainer: {
-          alignItems: 'center',
-          justifyContent: 'space-around'
+          flex: 1,
+          flexDirection: 'row',
+          paddingHorizontal: 10,
+          paddingVertical: 70,
       },
       cardContainer: {
           flex:1,
-          flexDirection:'column',
           alignItems: 'stretch'
       },
       card: {
           height:300
+      },
+      buttonColumn: {
+          flex: 1,
+          flexDirection: 'column'
+      },
+      button: {
+          flex: 1,
+          justifyContent: 'center',
+          alignContent: 'center',
+          alignItems: 'center',
+          borderColor: 'white',
+          borderWidth: 2 
+      },
+      buttonText: {
+          color: 'white',
+          fontSize: 20
+      },
+      buttonIcon: {
+        color: 'white',
+        fontSize: 62
+      },
+      buttonContent: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
       }
 });
