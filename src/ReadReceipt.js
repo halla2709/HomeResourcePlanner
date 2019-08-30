@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import DatabaseManager from "./DatabaseManager";
 
 
 
@@ -22,32 +23,13 @@ export default class ReadReceipt extends React.Component {
         scanned: false,
         json: null
     };
-
-    fakeJson = {
-        Bananas: {
-            quantity: 1.055,
-            itemType: "food",
-            unit: "kg",
-            unitCost: 240
-        },
-        Onion: {
-            pack: "4",
-            packUnit: "pcs",
-            quantity: "1",
-            itemType: "food",
-            unit: "pcs",
-            unitCost: "349",
-        },
-        Spinach: {
-            quantity: 1,
-            unit: "pcs",
-            unitCost: "349",
-            pack: 200,
-            packUnit: "g",
-            itemType: "food",
-        }
-    };
-
+    shoppingList = [
+        {name: 'bacon', amount: 200},
+        {name: 'butter', amount: 400},
+        {name: 'oregano', amount: 70},
+        {name: 'potatoes', amount: 1000},
+        {name: 'pepper', amount: 70}
+    ];
 
     async componentDidMount() {
         this.getPermissionsAsync();
@@ -61,6 +43,7 @@ export default class ReadReceipt extends React.Component {
     constructor() {
         super();
         console.log("Constructor");
+        this.dBInstance = new DatabaseManager();
     }
 
     render() {
@@ -80,7 +63,7 @@ export default class ReadReceipt extends React.Component {
                     justifyContent: 'flex-end',
                 }}>
                 <BarCodeScanner
-                    onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
+                    onBarCodeScanned= {scanned ? undefined : this.handleBarCodeScanned}
                     style={StyleSheet.absoluteFillObject}
                 />
             </View>
@@ -89,7 +72,8 @@ export default class ReadReceipt extends React.Component {
 
     handleBarCodeScanned = ({type, data}) => {
         this.setState({scanned: true});
-        //TODO adda í database
-        this.props.navigation.navigate('Data');
+        this.dBInstance.addList(this.shoppingList).then(
+            this.props.navigation.replace('Data')
+        )
     }
 }

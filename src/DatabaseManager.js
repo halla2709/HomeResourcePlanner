@@ -13,18 +13,18 @@ var firebaseConfig = {
 
 var db;
 
-class DatabaseManager{
-    constructor(){
-        if(!!DatabaseManager.instance){
-            return DatabaseManager.instance; 
+class DatabaseManager {
+    constructor() {
+        if (!!DatabaseManager.instance) {
+            return DatabaseManager.instance;
         }
 
         DatabaseManager.instance = this;
 
-       !firebase.apps.length 
-        ? firebase.initializeApp(firebaseConfig).firestore()
-        : firebase.app().firestore();
-  
+        !firebase.apps.length
+            ? firebase.initializeApp(firebaseConfig).firestore()
+            : firebase.app().firestore();
+
         // Initialize Firebase
         //firebase.initializeApp(firebaseConfig);
         db = firebase.firestore();
@@ -33,15 +33,40 @@ class DatabaseManager{
         return this;
     }
 
-   async getAllIngredientsForUser (name) {
-       var snapshots = await  db.collection("Anton").get();
-       var ingredients = [];
-       snapshots.forEach((doc) => {
-           console.log(doc.id);
+    async getAllIngredientsForUser(name) {
+        var snapshots = await db.collection("Anton").get();
+        var ingredients = [];
+        snapshots.forEach((doc) => {
+            console.log(doc.id);
             ingredients.push(doc.id);
-       });
-       return ingredients;
-   }
+        });
+        return ingredients;
+    }
+
+    async getExpirationDate(itemName) {
+        var snap = await db.collection("ingredients").doc(itemName).get();
+        var item = snap.data();
+        console.log('shelflife: ', item.shelfLife);
+        var expDate = new Date();
+        expDate.setDate(expDate.getDate() + item.shelfLife);
+        return expDate;
+    }
+
+    async addResource (item) {
+        console.log('item: ', item.name);
+        var date = await this.getExpirationDate(item.name);
+        console.log("date:", date);
+        db.collection("Anton").doc(item.name).set({amount: item.amount, expirationDate: date});
+        return true;
+    }
+
+    async addList (itemArray){
+        var self = this;
+        await itemArray.forEach(function(item){
+           self.addResource(item);
+        });
+        return true;
+    }
 }
 
 export default DatabaseManager;
