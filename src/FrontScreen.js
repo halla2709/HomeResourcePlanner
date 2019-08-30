@@ -13,7 +13,9 @@ export default class FrontScreen extends React.Component {
                         console.log("Find recipe"); 
                         this.props.navigation.navigate('Recipes');
                      } } title="Finna uppskrift"></Button>
-                    <Button onPress={()=>console.log("Get ingredient list")} title="Hvað er til?"></Button>
+                    <Button onPress={()=>{console.log("Get ingredient list");
+                    this.props.navigation.navigate('Data');
+                    }} title="Hvað er til?"></Button>
                 </View>
             </View>
             
