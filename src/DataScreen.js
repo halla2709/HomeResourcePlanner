@@ -4,13 +4,14 @@ import Styles from '../assets/Stylesheet'
 import DatabaseManager from './DatabaseManager'
 
 export default class DataScreen extends React.Component {
+  //  this.dBInstance;    
     constructor() {
         super();
-        DatabaseManager.init();
+        this.dBInstance = new DatabaseManager();
     }
 
     async componentDidMount() {
-        var allIngredients = await DatabaseManager.getAllIngredientsForUser();
+        var allIngredients = await this.dBInstance.getAllIngredientsForUser();
         console.log(allIngredients);
     }
     render() {
