@@ -32,7 +32,8 @@ export default class FrontScreen extends React.Component {
                 </View>
                 <View style={Styles.buttonColumn}>
                     <TouchableHighlight style={[Styles.button, { flex: 0.55, backgroundColor: 'dodgerblue' }]} onPress={() => {
-                        console.log("Get ingredient list")
+                        console.log("Get ingredient list");
+                        this.props.navigation.navigate('Data');
                     }}>
                         <View style={Styles.buttonContent}>
                             <MaterialCommunityIcons style={Styles.buttonIcon} name="fridge-outline" />
