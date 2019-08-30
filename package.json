@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "^34.0.1",
+    "expo-barcode-scanner": "^6.0.0",
     "expo-web-browser": "^6.0.0",
     "firebase": "^6.4.2",
     "firebase-admin": "^8.4.0",

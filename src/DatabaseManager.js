@@ -10,21 +10,31 @@ var firebaseConfig = {
     messagingSenderId: "594447905180",
     appId: "1:594447905180:web:d799b1e0b2439b4b"
   };
-  var db;
 
-  function init() {
-    !firebase.apps.length 
-    ? firebase.initializeApp(firebaseConfig).firestore()
-    : firebase.app().firestore();
+var db;
+
+class DatabaseManager{
+    constructor(){
+        if(!!DatabaseManager.instance){
+            return DatabaseManager.instance; 
+        }
+
+        DatabaseManager.instance = this;
+
+       !firebase.apps.length 
+        ? firebase.initializeApp(firebaseConfig).firestore()
+        : firebase.app().firestore();
   
-    // Initialize Firebase
-    //firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
-    console.log("Init firestore");
-  }
+        // Initialize Firebase
+        //firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+        console.log("Init firestore");
 
-   async function getAllIngredientsForUser(name) {
-       var snapshots = await db.collection("Anton").get();
+        return this;
+    }
+
+   async getAllIngredientsForUser (name) {
+       var snapshots = await  db.collection("Anton").get();
        var ingredients = [];
        snapshots.forEach((doc) => {
            console.log(doc.data());
@@ -33,8 +43,6 @@ var firebaseConfig = {
        });
        return ingredients;
    }
+}
 
-   export default {
-       init,
-       getAllIngredientsForUser
-   }
+export default DatabaseManager;

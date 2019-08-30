@@ -6,14 +6,15 @@ import DatabaseManager from './DatabaseManager'
 import { AntDesign } from '@expo/vector-icons'
 
 export default class DataScreen extends React.Component {
+  //  this.dBInstance;    
     constructor() {
         super();
-        DatabaseManager.init();
         this.state = { ingredients: [], modalVisible: false }
+        this.dBInstance = new DatabaseManager();
     }
 
     async componentDidMount() {
-        var allIngredients = await DatabaseManager.getAllIngredientsForUser();
+        var allIngredients = await this.dBInstance.getAllIngredientsForUser();
         console.log(allIngredients);
         this.setState({ ingredients: allIngredients });
         //this.setState({ ingredients: [{name:"bla", amount:4, expirationDate:new Date()}, {name:"blabla", amount:45.1, expirationDate:new Date()}, {name:"bluúúð", amount:712, expirationDate:new Date()}]});

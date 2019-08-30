@@ -4,11 +4,13 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import FrontScreen from './FrontScreen'
 import RecipeScreen from './RecipeScreen'
 import DataScreen from './DataScreen'
+import ReadReceipt from './ReadReceipt'
 
 const AppNavigator = createStackNavigator({
   Home: FrontScreen,
   Recipes: RecipeScreen,
-  Data: DataScreen
+  Data: DataScreen,
+    ReadReceipt: ReadReceipt
 },{
     initialRouteName:"Home"
 });
