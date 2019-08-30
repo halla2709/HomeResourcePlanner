@@ -3,16 +3,15 @@ import DatabaseManager from './DatabaseManager'
 async function getRecipesFromApi() {
     var db = new DatabaseManager();
     var otherIngredients = await db.getAllIngredientsForUser();
-    //otherIngredients.sort((a,b) => { return a.expirationDate < b.expirationDate ? -1 : 1 });
-    //if (otherIngredients.length > 0) 
-    return await fetchRecipes(otherIngredients[0].name, otherIngredients);
-    //else
-    //return [];
+    otherIngredients.sort((a,b) => { return a.expirationDate < b.expirationDate ? -1 : 1 });
+    if (otherIngredients.length > 0) 
+        return await fetchRecipes(otherIngredients[0].name, otherIngredients);
+    else
+        return [];
   }
 
 async function fetchRecipes(key, otherIngredients) {
     try {
-        console.log(key);
         let response = await fetch(getAPIPath(key));
         let responseJson = await response.json();
         var hits = responseJson.hits;
@@ -36,7 +35,7 @@ function addMatchesToHits(hits, ownedIngredients) {
             for(var i = 0; i < recipe.ingredientLines.length; i++) {
                 var ingredient = recipe.ingredientLines[i];
                 if(!ingredient.found && ingredient.toLowerCase().includes(owned.name.toLowerCase())) {
-                    recipe.ownedMatches.push(ingredient);
+                    recipe.ownedMatches.push(owned.name);
                     ownedIngredientLines[ingredient] = true;
                     break;
                 }

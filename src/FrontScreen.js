@@ -13,7 +13,6 @@ export default class FrontScreen extends React.Component {
             <View style={Styles.buttonContainer}>
                 <View style={Styles.buttonColumn}>
                     <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.45, backgroundColor: 'deeppink' }]} onPress={() => {
-                        console.log("Add ingredients")
                         this.props.navigation.navigate('ReadReceipt');
                     }}>
                         <View style={Styles.buttonContent}>
@@ -22,7 +21,6 @@ export default class FrontScreen extends React.Component {
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.55, backgroundColor: 'darkviolet' }]} onPress={() => {
-                        console.log("Find recipe");
                         this.props.navigation.navigate('Recipes');
                     }}>
                         <View style={Styles.buttonContent}>
@@ -33,7 +31,6 @@ export default class FrontScreen extends React.Component {
                 </View>
                 <View style={Styles.buttonColumn}>
                     <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.55, backgroundColor: 'dodgerblue' }]} onPress={() => {
-                        console.log("Get ingredient list");
                         this.props.navigation.navigate('Data');
                     }}>
                         <View style={Styles.buttonContent}>
@@ -42,7 +39,6 @@ export default class FrontScreen extends React.Component {
                         </View>
                     </TouchableHighlight>
                     <TouchableHighlight underlayColor="#EEE7E9" style={[Styles.button, { flex: 0.45, backgroundColor: 'coral' }]} onPress={() => {
-                        console.log("User")
                     }}>
                         <View style={Styles.buttonContent}>
                             <MaterialCommunityIcons style={Styles.buttonIcon} name="settings-outline" />

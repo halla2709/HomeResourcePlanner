@@ -9,12 +9,13 @@ import {
     TouchableNativeFeedback,
     TouchableOpacity,
     Button,
-    View,
+    View
 } from 'react-native';
+import Modal from 'react-native-modalbox'
 import * as Permissions from 'expo-permissions';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-
-
+import DatabaseManager from "./DatabaseManager";
+import Styles from '../assets/Stylesheet';
 
 export default class ReadReceipt extends React.Component {
     state = {
@@ -22,32 +23,14 @@ export default class ReadReceipt extends React.Component {
         scanned: false,
         json: null
     };
-
-    fakeJson = {
-        Bananas: {
-            quantity: 1.055,
-            itemType: "food",
-            unit: "kg",
-            unitCost: 240
-        },
-        Onion: {
-            pack: "4",
-            packUnit: "pcs",
-            quantity: "1",
-            itemType: "food",
-            unit: "pcs",
-            unitCost: "349",
-        },
-        Spinach: {
-            quantity: 1,
-            unit: "pcs",
-            unitCost: "349",
-            pack: 200,
-            packUnit: "g",
-            itemType: "food",
-        }
-    };
-
+    shoppingList = [
+        {name: 'chicken', amount: 333},
+        {name: 'bacon', amount: 200},
+        {name: 'butter', amount: 400},
+        {name: 'potatoes', amount: 1000},
+        {name: 'white wine', amount: 1000},
+        {name: 'garlic', amount: 200}
+    ];
 
     async componentDidMount() {
         this.getPermissionsAsync();
@@ -60,7 +43,7 @@ export default class ReadReceipt extends React.Component {
 
     constructor() {
         super();
-        console.log("Constructor");
+        this.dBInstance = new DatabaseManager();
     }
 
     render() {
@@ -80,16 +63,23 @@ export default class ReadReceipt extends React.Component {
                     justifyContent: 'flex-end',
                 }}>
                 <BarCodeScanner
-                    onBarCodeScanned={scanned ? undefined : this.handleBarCodeScanned}
+                    onBarCodeScanned= {scanned ? undefined : this.handleBarCodeScanned}
                     style={StyleSheet.absoluteFillObject}
                 />
+                <Modal position={"bottom"} ref={"modal"}>
+                    <ActivityIndicator size="large"/>
+                </Modal>
             </View>
         );
     };
 
     handleBarCodeScanned = ({type, data}) => {
         this.setState({scanned: true});
-        //TODO adda í database
-        this.props.navigation.navigate('Data');
+        var navigate = this.props.navigation.replace;
+        this.dBInstance.addList(this.shoppingList).then(function(value) {
+            console.log("Navigate");
+            navigate('Data');
+        });
+        this.refs.modal.open();
     }
 }

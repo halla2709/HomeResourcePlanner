@@ -18,7 +18,6 @@ export default class DataScreen extends React.Component {
 
     async loadIngredients() {
         var allIngredients = await this.dBInstance.getAllIngredientsForUser();
-        console.log(allIngredients);
         this.setState({ ingredients: allIngredients });
     }
 
